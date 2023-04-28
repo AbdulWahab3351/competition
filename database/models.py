@@ -72,7 +72,7 @@ class Content(Base):
     path=Column(String(1000))
     content_course = relationship("Course", back_populates="course_content")
     __table_args__=(
-        PrimaryKeyConstraint(code_fk,path)
+        PrimaryKeyConstraint(code_fk,path),
 
     )
 
@@ -82,8 +82,10 @@ class History(Base):
     date=Column(DateTime(timezone=True), server_default=func.now())
     history_course = relationship("Course", back_populates="course_history")
     __table_args__=(
-        PrimaryKeyConstraint(code_fk,date)
+        PrimaryKeyConstraint(code_fk,date),
 
     )
+
+Base.metadata.create_all(engine)
 
 
